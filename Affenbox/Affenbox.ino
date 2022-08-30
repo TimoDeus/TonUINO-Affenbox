@@ -239,19 +239,19 @@ void resetSettings()
 #endif
   mySettings.cookie = cardCookie;
   mySettings.version = 3;
-  mySettings.maxVolume = 25;
+  mySettings.maxVolume = 20;
   mySettings.minVolume = 1;
-  mySettings.initVolume = 18;
+  mySettings.initVolume = 10;
   mySettings.eq = 1;
   mySettings.locked = false;
-  mySettings.standbyTimer = 1;
+  mySettings.standbyTimer = 15; // minutes
   mySettings.invertVolumeButtons = false;
   mySettings.adminMenuLocked = 0;
   mySettings.savedModifier.folder = 0;
   mySettings.savedModifier.special = 0;
   mySettings.savedModifier.special2 = 0;
   mySettings.savedModifier.mode = 0;
-  mySettings.stopWhenCardAway = false;
+  mySettings.stopWhenCardAway = true;
   mySettings.userAge = 0;
 
   mySettings.irRemoteUserCodes[NoTrigger] = 0;
