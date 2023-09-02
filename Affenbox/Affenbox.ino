@@ -2892,7 +2892,7 @@ void previousAction()
 //////////////////////////////////////////////////////////////////////////
 void pauseAction(bool fromCard /* = false */)
 {
-  if (myTriggerEnable.pauseTrack == true)
+  if (myTriggerEnable.pauseTrack == true && !ignorePauseEvent(fromCard))
   {
     myTriggerEnable.pauseTrack = false;
     if (activeModifier != NULL)
@@ -2923,6 +2923,14 @@ void pauseAction(bool fromCard /* = false */)
       //disablestandbyTimer();
     }
   }
+}
+
+bool ignorePauseEvent(bool fromCard)
+{
+#if defined PAUSE_WITH_CARD_ONLY
+  return mySettings.stopWhenCardAway && fromCard;
+#endif
+  return false;
 }
 
 //////////////////////////////////////////////////////////////////////////
