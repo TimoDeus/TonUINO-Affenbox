@@ -2892,7 +2892,7 @@ void previousAction()
 //////////////////////////////////////////////////////////////////////////
 void pauseAction(bool fromCard /* = false */)
 {
-  if (myTriggerEnable.pauseTrack == true)
+  if (myTriggerEnable.pauseTrack == true && !ignorePauseEvent(fromCard))
   {
     myTriggerEnable.pauseTrack = false;
     if (activeModifier != NULL)
@@ -2923,6 +2923,14 @@ void pauseAction(bool fromCard /* = false */)
       //disablestandbyTimer();
     }
   }
+}
+
+bool ignorePauseEvent(bool fromCard)
+{
+#if defined PAUSE_WITH_CARD_ONLY
+  return mySettings.stopWhenCardAway && fromCard;
+#endif
+  return false;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -4036,16 +4044,6 @@ void dump_byte_array(byte *buffer, byte bufferSize)
   Serial.println();
 }
 #endif
-///////////////////////////////////////// Check Bytes   ///////////////////////////////////
-/*bool checkTwo ( uint8_t a[], uint8_t b[] ) {
-  for ( uint8_t k = 0; k < 4; k++ ) {   // Loop 4 times
-    if ( a[k] != b[k] ) {     // IF a != b then false, because: one fails, all fail
-      return false;
-    }
-  }
-  return true;
-  }*/
-//////////////////////////////////////////////////////////////////////////
 
 bool setupModifier(folderSettings *tmpFolderSettings)
 {
