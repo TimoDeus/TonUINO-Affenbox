@@ -2928,7 +2928,7 @@ void pauseAction(bool fromCard /* = false */)
 bool ignorePauseEvent(bool fromCard)
 {
 #if defined PAUSE_WITH_CARD_ONLY
-  return mySettings.stopWhenCardAway && fromCard;
+  return mySettings.stopWhenCardAway && !fromCard;
 #endif
   return false;
 }
